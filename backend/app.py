@@ -27,6 +27,10 @@ login_manager = LoginManager(app)
 def load_user(user_id):
     return Usuario.query.get(int(user_id))
 
+@app.route('/')
+def home():
+    return jsonify({"status": "ok", "message": "Backend Online Sports is running. Go to /api/status to check API."})
+
 @app.route('/api/status')
 def status():
     return jsonify({"status": "ok", "message": "Backend is running"})
