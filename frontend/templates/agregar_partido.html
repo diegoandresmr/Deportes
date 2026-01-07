@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar Partido - Online Sports{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">⚽ Agregar Nuevo Partido</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="equipo_local" class="form-label">Equipo Local:</label>
+                            <input type="text" class="form-control" id="equipo_local" name="equipo_local" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="equipo_visitante" class="form-label">Equipo Visitante:</label>
+                            <input type="text" class="form-control" id="equipo_visitante" name="equipo_visitante"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="deporte" class="form-label">Deporte:</label>
+                        <select class="form-select" id="deporte" name="deporte" required>
+                            <option value="">Selecciona un deporte</option>
+                            <option value="futbol">Fútbol</option>
+                            <option value="baloncesto">Baloncesto</option>
+                            <option value="tenis">Tenis</option>
+                            <option value="formula1">Fórmula 1</option>
+                            <option value="beisbol">Béisbol</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="liga" class="form-label">Liga / Torneo:</label>
+                        <input type="text" class="form-control" id="liga" name="liga"
+                            placeholder="Ej: La Liga, NBA, Champions League" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fecha" class="form-label">Fecha:</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="hora" class="form-label">Hora:</label>
+                            <input type="time" class="form-control" id="hora" name="hora" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado:</label>
+                        <select class="form-select" id="estado" name="estado" required>
+                            <option value="programado">Programado</option>
+                            <option value="en_vivo">En Vivo</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Agendar Partido</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

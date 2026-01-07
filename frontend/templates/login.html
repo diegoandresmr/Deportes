@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión - Online Sports{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <!-- Tarjeta de login -->
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white text-center">
+                    <h4 class="mb-0">Acceso al Sistema</h4>
+                </div>
+                
+                <div class="card-body p-4">
+                    <!-- Formulario simple -->
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <div class="mb-3">
+                            <label for="username" class="form-label fw-semibold">Usuario</label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="username" 
+                                   name="username" 
+                                   required
+                                   placeholder="Ingresa tu usuario">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-semibold">Contraseña</label>
+                            <input type="password" 
+                                   class="form-control" 
+                                   id="password" 
+                                   name="password" 
+                                   required
+                                   placeholder="Ingresa tu contraseña">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100 py-2">
+                            Acceder
+                        </button>
+                    </form>
+                    
+                    <!-- Enlace a registro -->
+                    <div class="text-center mt-4 pt-3 border-top">
+                        <p class="mb-2 text-muted">¿No tienes una cuenta?</p>
+                        <a href="{{ url_for('registro') }}" class="btn btn-outline-secondary btn-sm">
+                            Crear nueva cuenta
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enlace para volver al inicio -->
+            <div class="text-center mt-3">
+                <a href="{{ url_for('index') }}" class="text-decoration-none">
+                    ← Volver al inicio
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -26,13 +26,25 @@
                     </div>
                     <div class="text-end">
                         {% if partido.estado == 'en_vivo' %}
-                            <span class="badge bg-danger">EN VIVO</span>
-                            <br>
-                            <strong>{{ partido.resultado_local }} - {{ partido.resultado_visitante }}</strong>
+                        <span class="badge bg-danger">EN VIVO</span>
+                        <br>
+                        <strong>{{ partido.resultado_local }} - {{ partido.resultado_visitante }}</strong>
                         {% else %}
-                            <span class="badge bg-warning">Próximo</span>
-                            <br>
-                            <small>{{ partido.fecha_hora.strftime('%H:%M') }}</small>
+                        <span class="badge bg-warning">Próximo</span>
+                        <br>
+                        <small>{{ partido.fecha_hora|format_datetime('%H:%M') }}</small>
+                        {% endif %}
+
+                        {% if current_user.is_authenticated %}
+                        <div class="mt-2">
+                            <a href="{{ url_for('editar_partido', partido_id=partido.id) }}"
+                                class="btn btn-warning btn-sm py-0 px-1" title="Editar">✏️</a>
+                            <form action="{{ url_for('eliminar_partido', partido_id=partido.id) }}" method="POST"
+                                class="d-inline" onsubmit="return confirm('¿Eliminar partido?');">
+                                <button type="submit" class="btn btn-danger btn-sm py-0 px-1"
+                                    title="Eliminar">🗑️</button>
+                            </form>
+                        </div>
                         {% endif %}
                     </div>
                 </div>
@@ -55,9 +67,10 @@
                 <p class="card-text">{{ noticia.contenido[:100] }}...</p>
                 <div class="d-flex justify-content-between">
                     <span class="badge bg-secondary">{{ noticia.deporte }}</span>
-                    <small class="text-muted">{{ noticia.fecha_publicacion.strftime('%d/%m/%Y') }}</small>
+                    <small class="text-muted">{{ noticia.fecha_publicacion|format_datetime('%d/%m/%Y') }}</small>
                 </div>
-                <a href="{{ url_for('noticia_detalle', noticia_id=noticia.id) }}" class="btn btn-primary btn-sm mt-2">Leer más</a>
+                <a href="{{ url_for('noticia_detalle', noticia_id=noticia.id) }}"
+                    class="btn btn-primary btn-sm mt-2">Leer más</a>
             </div>
         </div>
         {% endfor %}
@@ -73,7 +86,8 @@
                 <a href="{{ url_for('deportes') }}?deporte=futbol" class="btn btn-outline-primary w-100">Fútbol</a>
             </div>
             <div class="col-md-2 col-6 mb-3">
-                <a href="{{ url_for('deportes') }}?deporte=baloncesto" class="btn btn-outline-primary w-100">Baloncesto</a>
+                <a href="{{ url_for('deportes') }}?deporte=baloncesto"
+                    class="btn btn-outline-primary w-100">Baloncesto</a>
             </div>
             <div class="col-md-2 col-6 mb-3">
                 <a href="{{ url_for('deportes') }}?deporte=tenis" class="btn btn-outline-primary w-100">Tenis</a>

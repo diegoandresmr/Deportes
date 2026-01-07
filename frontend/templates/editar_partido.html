@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Partido - Online Sports{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">⚽ Editar Partido</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="equipo_local" class="form-label">Equipo Local:</label>
+                            <input type="text" class="form-control" id="equipo_local" name="equipo_local"
+                                value="{{ partido.equipo_local }}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="equipo_visitante" class="form-label">Equipo Visitante:</label>
+                            <input type="text" class="form-control" id="equipo_visitante" name="equipo_visitante"
+                                value="{{ partido.equipo_visitante }}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="deporte" class="form-label">Deporte:</label>
+                        <select class="form-select" id="deporte" name="deporte" required>
+                            <option value="futbol" {% if partido.deporte=='futbol' %}selected{% endif %}>Fútbol</option>
+                            <option value="baloncesto" {% if partido.deporte=='baloncesto' %}selected{% endif %}>
+                                Baloncesto</option>
+                            <option value="tenis" {% if partido.deporte=='tenis' %}selected{% endif %}>Tenis</option>
+                            <option value="formula1" {% if partido.deporte=='formula1' %}selected{% endif %}>Fórmula 1
+                            </option>
+                            <option value="beisbol" {% if partido.deporte=='beisbol' %}selected{% endif %}>Béisbol
+                            </option>
+                            <option value="otros" {% if partido.deporte=='otros' %}selected{% endif %}>Otros</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="liga" class="form-label">Liga / Torneo:</label>
+                        <input type="text" class="form-control" id="liga" name="liga" value="{{ partido.liga }}"
+                            required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fecha" class="form-label">Fecha:</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha" value="{{ partido.fecha }}"
+                                required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="hora" class="form-label">Hora:</label>
+                            <input type="time" class="form-control" id="hora" name="hora" value="{{ partido.hora }}"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado:</label>
+                        <select class="form-select" id="estado" name="estado" required>
+                            <option value="programado" {% if partido.estado=='programado' %}selected{% endif %}>
+                                Programado</option>
+                            <option value="en_vivo" {% if partido.estado=='en_vivo' %}selected{% endif %}>En Vivo
+                            </option>
+                            <option value="finalizado" {% if partido.estado=='finalizado' %}selected{% endif %}>
+                                Finalizado</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Actualizar Partido</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

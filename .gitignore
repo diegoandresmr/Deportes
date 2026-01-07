@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Environment Variables
+.env
+
+# Database
+*.db
+*.sqlite3
+
+# Flask
+instance/
+.webassets-cache
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
